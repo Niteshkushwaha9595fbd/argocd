@@ -1,11 +1,12 @@
-kind: StorageClass
 apiVersion: storage.k8s.io/v1
+kind: StorageClass
 metadata:
   name: local-storage
 provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
 
 ---
+
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -29,9 +30,11 @@ spec:
       - matchExpressions:
         - key: kubernetes.io/hostname
           operator: In
-          
+          values:
+            - aks-agentpool-22654169-vmss000000   # ← tera current node
 
 ---
+
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
