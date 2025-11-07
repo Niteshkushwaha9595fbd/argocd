@@ -13,9 +13,11 @@ spec:
       labels:
         app: jenkins-server
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: aks-agentpool-22654169-vmss000000
       securityContext:
-            fsGroup: 1000 
-            runAsUser: 1000
+        fsGroup: 1000 
+        runAsUser: 1000
       serviceAccountName: jenkins-admin
       containers:
         - name: jenkins
@@ -54,6 +56,5 @@ spec:
       volumes:
         - name: jenkins-data
           persistentVolumeClaim:
-              claimName: jenkins-pv-claim
+            claimName: jenkins-pv-claim
 
-      
