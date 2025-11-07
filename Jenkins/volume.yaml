@@ -29,8 +29,7 @@ spec:
       - matchExpressions:
         - key: kubernetes.io/hostname
           operator: In
-          values:
-          - aks-agentpool-25861202-vmss000001
+          
 
 ---
 apiVersion: v1
