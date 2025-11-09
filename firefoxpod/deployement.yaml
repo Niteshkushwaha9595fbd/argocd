@@ -1,29 +1,24 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: firefox
+  name: simple-web
   labels:
-    app: firefox
+    app: simple-web
 spec:
   containers:
-  - name: firefox
-    image: selenium/standalone-firefox:latest
+  - name: simple-web
+    image: nginx:latest
     ports:
-    - containerPort: 4444   # Selenium WebDriver
-    - containerPort: 5900   # VNC GUI
+    - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: firefox-service
+  name: simple-web-service
 spec:
   type: LoadBalancer
   selector:
-    app: firefox
+    app: simple-web
   ports:
-  - name: selenium
-    port: 4444
-    targetPort: 4444
-  - name: vnc
-    port: 5900
-    targetPort: 5900
+  - port: 80
+    targetPort: 80
